@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	h1,h2,h3,h4 {
+		@apply text-text font-bold
+	}
+	h1 {
+		@apply md:text-[4rem] md:leading-[4.375rem] text-[3rem] leading-[3.275rem]
+	}
+	h2 {
+		@apply text-[2rem] leading-[2.175rem] md:text-[3rem] md:leading-[3.375rem]
+	}
+	h6 {
+		font-size: 1.5rem;
+		line-height: 2.125rem;
+		font-weight: 500;
+		@apply text-text
+	}
+	p {
+		@apply text-lg text-text3;
+		line-height: 2rem;
+	}
+
+	section {
+		@apply py-[7.5rem]
+	}
+}
+
+@layer components {
+	.text-6xl {
+		font-size: 4rem;
+		line-height: 4.375rem;
+	}
+	.max-w-page {
+		@apply max-w-7xl
+	}
+
+	.px-page {
+		@apply px-4 md:px-8 lg:px-20
+	}
+}
+
+@layer utilities {
+	.scrollbar-none::-webkit-scrollbar {
+		display: none;
+	}
+	.scrollbar-none {
+		scrollbar-color: transparent transparent;
+	}
+}
+
+html {
+	font-size: max(14px, 1vw);
+}
+
+img {
+	@apply pointer-events-none select-none
+}
+
+svg {
+	@apply text-3xl
+}
