@@ -19,8 +19,8 @@ const Posts = (props: PostsProps) => {
         Get update with <span className=" text-primary">latest blog</span>
       </h1>
       <div className="flex flex-col w-full mx-auto mt-16">
-        <Carousel.Provider initState={{ columns: {zero: 3, md: 4} }}>
-          <Carousel.Container itemGapRem={2}>
+        <Carousel.HorizontalProvider initState={{ columns: { zero: 3, md: 4 } }}>
+          <Carousel.HorizontalContainer itemGapRem={2}>
             {Array.from({ length: 6 }, (_, i) => (
               <Post
                 key={i}
@@ -29,12 +29,12 @@ const Posts = (props: PostsProps) => {
                 dateTimestamp={post.createdAt}
               />
             ))}
-          </Carousel.Container>
+          </Carousel.HorizontalContainer>
           <Carousel.DotsNav className="mx-auto mt-12" />
-        </Carousel.Provider>
+        </Carousel.HorizontalProvider>
       </div>
     </section>
   );
-};	
+};
 
 export default Posts;

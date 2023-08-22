@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
 import withProvider from "@/shared/mobx/withProvider";
 import { PropsWithChildren } from "react";
-import { CarouselStore } from "./store";
+import { VerticalCarouselStore } from "./store";
 
 export default withProvider(
   (props: PropsWithChildren) => props.children,
-  CarouselStore
+  VerticalCarouselStore
 );

@@ -2,14 +2,18 @@
 
 import { useStore } from "@/shared/mobx/withProvider";
 import { observer } from "mobx-react-lite";
-import { CarouselStore } from "./store";
+import { HorizontalCarouselStore } from "./horizontal/store";
 
 interface CarouselDotsProps {
   className?: string;
 }
 
 const CarouselDots = observer((props: CarouselDotsProps) => {
-  const { idx, pageLen, onIdxChange } = useStore<CarouselStore>();
+  const {
+    idx,
+    pageLen,
+    onIdxChange: onIdxChange,
+  } = useStore<HorizontalCarouselStore>();
 
   return (
     <div className={`${props.className ?? ""} inline-flex gap-2`}>

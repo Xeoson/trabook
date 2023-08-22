@@ -2,11 +2,6 @@ import Deal from "@/components/ui/Deal";
 import * as Carousel from "@/modules/Carousel";
 import deal from "@/shared/mocks/deal";
 
-const carouselMediaCount: Record<string, number> = {
-  zero: 1,
-  md: 3,
-};
-
 interface ExclusiveDealsProps {
   className?: string;
 }
@@ -21,14 +16,14 @@ const ExclusiveDeals = (props: ExclusiveDealsProps) => {
         Discover our fantastic early booking discounts & start planning your
         journey.
       </p>
-      <Carousel.Provider initState={{ columns: { zero: 2, md: 3 } }}>
-        <Carousel.Container className="mx-auto mt-16">
+      <Carousel.HorizontalProvider initState={{ columns: { zero: 2, md: 3 } }}>
+        <Carousel.HorizontalContainer className="mx-auto mt-16">
           {Array.from({ length: 8 }, (_, i) => (
             <Deal key={i} {...deal} />
           ))}
-        </Carousel.Container>
+        </Carousel.HorizontalContainer>
         <Carousel.ButtonsNav className="mt-12" />
-      </Carousel.Provider>
+      </Carousel.HorizontalProvider>
     </div>
   );
 };

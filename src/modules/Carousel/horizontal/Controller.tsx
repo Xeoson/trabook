@@ -1,26 +1,30 @@
 "use client";
 
 import useOnMountRef from "@/shared/hooks/useOnMountRef";
+import useOnResizeEffect from "@/shared/hooks/useOnResizeEffect";
 import { useStore } from "@/shared/mobx/withProvider";
 import { observer } from "mobx-react-lite";
 import { PropsWithChildren } from "react";
-import { CarouselStore } from "./store";
-import useOnResizeEffect from "@/shared/hooks/useOnResizeEffect";
+import { HorizontalCarouselStore } from "./store";
 
-interface MouseControllerProps extends PropsWithChildren {
+interface ControllerProps extends PropsWithChildren {
   className?: string;
 }
 
-const MouseController = observer((props: MouseControllerProps) => {
-  const store =
-    useStore<CarouselStore>();
+const Controller = observer((props: ControllerProps) => {
+  const store = useStore<HorizontalCarouselStore>();
 
   const ref = useOnMountRef<HTMLUListElement>((el) =>
-    store.set({ controllerChildWidth: (el.children[0] as HTMLElement).offsetWidth })
+    store.set({
+      controllerChildWidth: (el.children[0] as HTMLElement).offsetWidth,
+    })
   );
 
-	useOnResizeEffect(() =>
-    store.set({ controllerChildWidth: (ref.current!.children[0] as HTMLElement).offsetWidth })
+  useOnResizeEffect(() =>
+    store.set({
+      controllerChildWidth: (ref.current!.children[0] as HTMLElement)
+        .offsetWidth,
+    })
   );
 
   return (
@@ -41,4 +45,4 @@ const MouseController = observer((props: MouseControllerProps) => {
   );
 });
 
-export default MouseController;
+export default Controller;

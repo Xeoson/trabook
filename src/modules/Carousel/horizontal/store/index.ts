@@ -1,11 +1,11 @@
 import { ScreenType } from "@/shared/components/MatchMedia";
-import { makeAutoObservable } from "mobx";
+import { makeObservable, observable } from "mobx";
 import { enableStaticRendering } from "mobx-react-lite";
+import { CarouselStore } from "../../store";
 
 enableStaticRendering(typeof window === "undefined");
 
-export class CarouselStore {
-  idx = 0;
+export class HorizontalCarouselStore extends CarouselStore {
   offset = 0;
   isDown = false;
 
@@ -13,32 +13,22 @@ export class CarouselStore {
   startOffset = 0;
   startPageX = 0;
   controllerChildWidth = 0;
-  pageLen = 0;
 
   constructor(initState: { columns: Partial<Record<ScreenType, number>> }) {
+    super();
     Object.entries(initState).map(([key, value]) => {
       // @ts-ignore
       this[key] = value;
     });
-    makeAutoObservable(this, {
-      startOffset: false,
-      startPageX: false,
-      controllerChildWidth: false,
-      pageLen: false,
+    makeObservable(this, {
+      offset: observable,
+      isDown: observable,
     });
   }
 
-  set = (state: { [K in keyof this]?: this[K] }) => {
-    for (const key in state) {
-      //@ts-ignore
-      this[key] = state[key];
-    }
-  };
-
   onIdxChange = (relative: number) => {
-    const isFirstIdx = this.idx + relative < 0;
-    const isLastIdx = this.idx + relative > this.pageLen - 1;
-    if (isFirstIdx || isLastIdx) return;
+    if (this.idx + relative < 0 || this.idx + relative > this.pageLen - 1)
+      return;
 
     this.idx = this.idx + relative;
     this.offset = this.idx * -this.controllerChildWidth;

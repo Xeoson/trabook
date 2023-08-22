@@ -5,21 +5,19 @@ import { cn } from "@/shared/helpers/classname";
 import useMatchMedia from "@/shared/hooks/useMatchMedia";
 import { useStore } from "@/shared/mobx/withProvider";
 import { Children, PropsWithChildren, useMemo } from "react";
-import MouseController from "./MouseController";
-import { CarouselStore } from "./store";
+import { HorizontalCarouselStore } from "./store";
+import Controller from "./Controller";
 
 interface ContainerProps extends PropsWithChildren {
   className?: string;
   itemGapRem?: number;
 }
 
-const Container = ({itemGapRem = 1, ...props}: ContainerProps) => {
-	const store = useStore<CarouselStore>();
-	const screen = useMatchMedia(...Object.keys(store.columns)) as ScreenType
+const Container = ({ itemGapRem = 1, ...props }: ContainerProps) => {
+  const store = useStore<HorizontalCarouselStore>();
+  const screen = useMatchMedia(...Object.keys(store.columns)) as ScreenType;
 
-	const columns = store.columns[screen] ?? 3
-
-  const Controller = MouseController;
+  const columns = store.columns[screen] ?? 3;
 
   const els = useMemo(() => {
     const pageLen = Math.ceil(Children.count(props.children) / columns);
@@ -31,7 +29,9 @@ const Container = ({itemGapRem = 1, ...props}: ContainerProps) => {
   }, [columns]);
 
   return (
-    <div className={cn(props.className, "select-none touch-none overflow-hidden")}>
+    <div
+      className={cn(props.className, "select-none touch-none overflow-hidden")}
+    >
       <Controller className="flex will-change-transform">
         {els.map((el, i) => (
           <li

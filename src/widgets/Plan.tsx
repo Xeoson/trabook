@@ -21,14 +21,14 @@ const Plan = (props: PlanProps) => {
         of all-inclusive offers!
       </p>
       <div className="flex flex-col w-full mx-auto">
-        <Carousel.Provider initState={{ columns: { zero: 2, md: 3 } }}>
+        <Carousel.HorizontalProvider initState={{ columns: { zero: 2, md: 3 } }}>
           <Carousel.ButtonsNav className="ml-auto" />
-          <Carousel.Container className="mt-6">
+          <Carousel.HorizontalContainer className="mt-6">
             {Array.from({ length: 7 }, (_, i) => (
               <Deal2 key={i} {...deal} />
             ))}
-          </Carousel.Container>
-        </Carousel.Provider>
+          </Carousel.HorizontalContainer>
+        </Carousel.HorizontalProvider>
       </div>
     </section>
   );

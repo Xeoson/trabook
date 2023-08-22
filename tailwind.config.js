@@ -1,7 +1,7 @@
 const plugin = require("tailwindcss/plugin");
 const defaultTheme = require("tailwindcss/defaultTheme");
 
-const BREAKPOINTS = {"zero": '0px', ...defaultTheme.screens};
+const BREAKPOINTS = { zero: "0px", ...defaultTheme.screens };
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -27,9 +27,9 @@ const config = {
     },
 
     extend: {
-			spacing: {
-				nav: '5rem'
-			},
+      spacing: {
+        nav: "5rem",
+      },
       screens: BREAKPOINTS,
       boxShadow: {
         button: "0px 8px 16px 0px",
@@ -41,7 +41,7 @@ const config = {
         primary: "0.3125rem",
       },
       keyframes: {
-        up: {
+        "btn-up": {
           "0%": { transform: "translateY(10%)", opacity: "0.15" },
           "100%": { transform: "translateY(0%)", opacity: "1" },
         },
@@ -49,20 +49,91 @@ const config = {
           "0%": { opacity: 0 },
           "100%": { opacity: 1 },
         },
-				"show-down": {
-					"0%": {transform: 'translateY(-100%)'},
-					"100%": {transform: 'translateY(0%)'}
-				},
-				"show-up": {
-					"0%": {transform: 'translateY(100%)'},
-					"100%": {transform: 'translateY(0%)'}
-				}
+        "show-down": {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(0%)" },
+        },
+        "show-up": {
+          "0%": { transform: "translateY(100%)" },
+          "100%": { transform: "translateY(0%)" },
+        },
+
+        down: {
+          "0%": {
+            translate: "-10% -40%",
+          },
+          "100%": {
+            translate: "0% 0%",
+          },
+        },
+        up: {
+          "0%": {
+            translate: "10% 40%",
+          },
+          "100%": {
+            translate: "0% 0%",
+          },
+        },
+
+        "down-hide": {
+          "0%": {
+            translate: "-10% -40%",
+            opacity: 1,
+          },
+          "100%": {
+            translate: "0% 0%",
+            opacity: 0,
+          },
+        },
+        "down-show": {
+          "0%": {
+            translate: "-10% -40%",
+            opacity: 0,
+          },
+          "30%": {
+            opacity: 0.7,
+          },
+          "100%": {
+            translate: "0% 0%",
+            opacity: 1,
+          },
+        },
+        "up-show": {
+          "0%": {
+            translate: "10% 40%",
+            opacity: 0,
+          },
+          "100%": {
+            translate: "0% 0%",
+            opacity: 1,
+          },
+        },
+        "up-hide": {
+          "0%": {
+            translate: "10% 40%",
+            opacity: 1,
+          },
+          "30%": {
+            opacity: 0.3,
+          },
+          "100%": {
+            translate: "0% 0%",
+            opacity: 0,
+          },
+        },
       },
       animation: {
-        up: "up 0.3s ease",
+        "btn-up": "btn-up 0.3s ease",
         show: "show 0.3s ease",
-				"show-down": 'show-down 0.7s ease',
-				"show-up": 'show-up 0.7s ease'
+        "show-down": "show-down 0.7s ease",
+        "show-up": "show-up 0.7s ease",
+
+        "up-show": "up-show 0.3s ease",
+        "up-hide": "up-hide 0.3s ease",
+        "down-hide": "down-hide 0.3s ease",
+        "down-show": "down-show 0.3s ease",
+        down: "down 0.3s ease",
+        up: "up 0.3s ease",
       },
     },
   },
@@ -79,6 +150,14 @@ const config = {
 
 const screens = Object.keys(BREAKPOINTS);
 const screensSaveList = screens.map((el) => [`${el}:hidden`, `${el}:contents`]);
-config.safelist = screensSaveList.flat()
+config.safelist = [
+  ...screensSaveList.flat(),
+  "animate-up-hide",
+  "animate-up",
+  "animate-down",
+  "animate-up-show",
+  "animate-down-show",
+  "animate-down-hide",
+];
 
 module.exports = config;

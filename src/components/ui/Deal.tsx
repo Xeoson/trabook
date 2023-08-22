@@ -21,7 +21,7 @@ const Deal = (props: DealProps) => {
         />
         <div className="absolute flex w-full h-full hovered:hidden bg-black/10 group-hover:flex">
           <Button
-            className="mx-auto mt-auto hovered:mb-[25%] mb-4 motion-safe:transition animate-up"
+            className="mx-auto mt-auto hovered:mb-[25%] mb-4 motion-safe:transition animate-btn-up"
             theme="primary"
             size="lg"
           >
