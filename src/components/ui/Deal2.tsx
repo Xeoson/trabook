@@ -13,20 +13,16 @@ const Deal2 = (props: Deal2Props) => {
       } border rounded-lg group border-accent bg-bg1`}
     >
       <div className="relative rounded-lg hovered:hover:bg-black/10 overflow-hidden aspect-[9/10]">
-        <Image
-          src={props.picture}
-          alt="destination picture"
-          fill
-        />
+        <Image src={props.picture} alt="destination picture" fill />
       </div>
       <div className="px-4 py-8 ">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between !text-lg md:!text-2xl">
           <h6>
             {props.title}
             {", "}
             {props.destination}
           </h6>
-          <p className="text-2xl font-semibold text-primary">
+          <p className="font-semibold text-primary">
             {"$"}
             {props.price}
           </p>

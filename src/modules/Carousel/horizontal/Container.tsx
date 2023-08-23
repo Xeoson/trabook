@@ -12,7 +12,7 @@ interface ContainerProps extends PropsWithChildren {
   className?: string;
   itemGapRem?: number;
 }
-
+	
 const Container = ({ itemGapRem = 1, ...props }: ContainerProps) => {
   const store = useStore<HorizontalCarouselStore>();
   const screen = useMatchMedia(...Object.keys(store.columns)) as ScreenType;
@@ -32,12 +32,12 @@ const Container = ({ itemGapRem = 1, ...props }: ContainerProps) => {
     <div
       className={cn(props.className, "select-none touch-none overflow-hidden")}
     >
-      <Controller className="flex will-change-transform">
+      <Controller className="flex">
         {els.map((el, i) => (
           <li
             key={i}
             style={{
-              gridTemplateColumns: "1fr ".repeat(columns),
+              gridTemplateColumns: `repeat(${columns}, 1fr)`,
               paddingInline: `${itemGapRem / 2}rem`,
               columnGap: `${itemGapRem}rem`,
             }}

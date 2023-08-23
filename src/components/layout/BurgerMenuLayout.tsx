@@ -2,6 +2,7 @@ import { Children, PropsWithChildren } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import Button from "../ui/Button";
 import Logo from "../ui/Logo";
+import List from "../ui/List";
 
 interface BurgerMenuLayoutProps extends PropsWithChildren {
   className?: string;
@@ -12,7 +13,7 @@ const BurgerMenuLayout = (props: BurgerMenuLayoutProps) => {
   return (
     <div
       className={
-        "fixed flex bg-bg1 z-50 overflow-auto overscroll-none pt-4 px-page flex-col gap-8 top-0 right-0 left-0 bottom-0"
+        "flex bg-bg1 z-50 overflow-auto overscroll-none pt-4 px-page flex-col gap-8 top-0 right-0 left-0 bottom-0"
       }
     >
       <div className="flex items-center justify-between h-16">
@@ -21,13 +22,12 @@ const BurgerMenuLayout = (props: BurgerMenuLayoutProps) => {
           <AiOutlineClose />
         </Button>
       </div>
-      <ul>
-        {Children.map(props.children, (el) => (
-          <li className="text-2xl border-b-2 child:block child:py-4 first:border-t-2 border-black/10">
-            {el}
-          </li>
-        ))}
-      </ul>
+      <List
+        itemClassName="text-2xl child:py-3"
+        style="vertical-divided"
+      >
+        {props.children}
+      </List>
     </div>
   );
 };

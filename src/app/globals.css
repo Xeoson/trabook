@@ -13,10 +13,7 @@
 		@apply text-[2rem] leading-[2.175rem] md:text-[3rem] md:leading-[3.375rem]
 	}
 	h6 {
-		font-size: 1.5rem;
-		line-height: 2.125rem;
-		font-weight: 500;
-		@apply text-text
+		@apply text-text text-[1.2rem] font-medium leading-[1.5rem] md:text-[1.5rem] md:leading-[2rem]
 	}
 	p {
 		@apply text-lg text-text3;
@@ -48,6 +45,11 @@
 	}
 	.scrollbar-none {
 		scrollbar-color: transparent transparent;
+	}
+
+	.scrollbar::-webkit-scrollbar-thumb {
+		width: 5px;
+		background-color: red;
 	}
 }
 

@@ -1,16 +1,24 @@
+import { cn } from "@/shared/helpers/classname";
 import { InputHTMLAttributes, ReactNode } from "react";
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+const styles = {
+  bordedred: "border rounded-md border-accent",
+};
+
+interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'style'> {
   startChild?: ReactNode;
   endChild?: ReactNode;
+  style?: keyof typeof styles;
 }
 
-const Input = ({ className, startChild = null, endChild = null, ...props }: InputProps) => {
+const Input = ({ className, startChild = null, endChild = null, style, ...props }: InputProps) => {
   return (
     <label
-      className={`${
-        className ?? ""
-      } min-w-0 cursor-text flex items-center gap-2 p-2 bg-white focus-within:outline-primary outline-2 rounded-lg`}
+      className={cn(
+        className,
+        style && styles[style],
+        "min-w-0 cursor-text flex items-center gap-2 p-2 bg-white focus-within:outline-primary outline-2 rounded-lg"
+      )}
     >
       {startChild && <div className="shrink-0">{startChild}</div>}
       <input

@@ -4,7 +4,7 @@ interface SelectTripOptionProps {
   className?: string;
 	btnText: string
 	text: string
-	onClick: () => void
+	onClick: (e: React.MouseEvent) => void
 }
 
 const SelectTripOption = (props: SelectTripOptionProps) => {

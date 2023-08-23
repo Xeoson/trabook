@@ -1,11 +1,11 @@
-import SelectTrip from "@/components/SelectTrip/SelectTrip";
+import Footer from "@/widgets/Footer";
 import Header from "@/widgets/Header";
 import Navbar from "@/widgets/Navbar";
+import SelectTrip from "@/widgets/SelectTrip";
 import { configure } from "mobx";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Footer from "@/widgets/Footer";
 
 configure({
   enforceActions: "always",
